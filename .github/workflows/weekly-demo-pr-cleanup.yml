@@ -19,14 +19,15 @@ jobs:
         for i in 111 222 333; do \
         echo "Adding ${i} to list"; \
         list=(${list[@]} ${i}); done
-        refactored_list=($(printf "%s\n" "${list[@]}" | sort -u | tr '\n' ' '))
-        echo "pr-list=$(jq --compact-output --null-input '$ARGS.positional' --args -- ${refactored_list[@]})" | tee -a $GITHUB_OUTPUT
+        #refactored_list=($(printf "%s\n" "${list[@]}" | sort -u | tr '\n' ' '))
+        #echo "pr-list=$(jq --compact-output --null-input '$ARGS.positional' --args -- ${refactored_list[@]})" | tee -a $GITHUB_OUTPUT
+        echo "pr-list=[$(echo ${list[@]} |tr ' ' ',')]" | tee -a $GITHUB_OUTPUT
 
   clean-demo-pr:
     needs: get-pr-records
     strategy:
       matrix:
-        pr-record: ${{ fromJSON(needs.get-pr-records.outputs.pr-list) }}
+        pr-record: ${{ (needs.get-pr-records.outputs.pr-list) }}
     uses: ./.github/workflows/clean-demo-pr.yml
     with:
       pr-number: ${{ matrix.pr-record }}
