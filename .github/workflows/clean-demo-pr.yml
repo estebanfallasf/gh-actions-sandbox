@@ -21,7 +21,7 @@ jobs:
             r53_zone: "Z02608583VKW5TMX3B5ED"
           - target: "prod"
             r53_zone: "Z0005272EGK5MRGCU1B9"
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 #    environment: 'demo'
 #    env:
 #      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
