@@ -7,8 +7,8 @@ on:
       pr-number:
         description: 'PR number'
         required: true
-        type: number
-        default: 000
+        #type: number
+        #default: 000
 
 jobs:
   clean-pr:
