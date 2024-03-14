@@ -27,7 +27,7 @@ jobs:
     needs: get-pr-records
     strategy:
       matrix:
-        pr-record: ${{ (needs.get-pr-records.outputs.pr-list) }}
+        pr-record: ${{ fromJSON(needs.get-pr-records.outputs.pr-list) }}
     uses: ./.github/workflows/clean-demo-pr.yml
     with:
       pr-number: ${{ matrix.pr-record }}
