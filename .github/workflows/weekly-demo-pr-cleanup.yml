@@ -8,26 +8,14 @@ on:
 jobs:
   get-pr-records:
     runs-on: ubuntu-latest
-#    environment: 'demo'
-#    env:
-#      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     outputs:
       pr-list: ${{ steps.get_records.outputs.pr-list }}
 
     steps:
-#    - name: Configure AWS Credentials
-#      id: configure-aws
-#      uses: aws-actions/configure-aws-credentials@v4
-#      with:
-#        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#        aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
     - name: Get PR records
       id: get_records
       run: |
         list=()
-#        for i in $(aws route53 list-resource-record-sets --hosted-zone-id Z00288701IWCJCEU7JLX1 | grep "pr-" \
-#        | cut -d ":" -f2 |cut -d "." -f1 | sort -u | sed 's/"pr-//'); do \
         for i in 111 222 333; do \
         echo "Adding ${i} to list"; \
         list=(${list[@]} ${i}); done
